@@ -141,3 +141,42 @@ body {
     color: #1a1a2e;
 }
 
+/* ============================================
+   PLACEHOLDER STYLING - Visible in Dark Mode
+   ============================================ */
+
+/* Light mode placeholder */
+.top-sectionBG .form-control::placeholder,
+.top-section .form-control::placeholder {
+    color: #6c757d;
+    opacity: 1;
+}
+
+/* Dark mode placeholder - make it visible */
+[data-bs-theme="dark"] .top-sectionBG .form-control::placeholder,
+[data-bs-theme="dark"] .top-section .form-control::placeholder {
+    color: #495057;
+    opacity: 1;
+}
+
+/* ============================================
+   HIDE REQUIRED ASTERISKS FROM CRISPY FORMS
+   ============================================ */
+
+/* Hide the asterisk that crispy forms adds for required fields */
+.asteriskField {
+    display: none !important;
+}
+
+/* Alternative: hide asterisks in labels */
+label .required,
+label .asterisk,
+label span.text-danger {
+    display: none !important;
+}
+
+/* If asterisk is added as ::after content */
+.top-sectionBG label::after,
+.top-section label::after {
+    content: '' !important;
+}

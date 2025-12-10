@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=h!z7-m$5cu5aep_*75oo_g8uvr($2sg(moavf4q+*0noxgefh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dylanchillin.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -123,8 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Directory where collectstatic will copy files
-STATIC_ROOT = str(BASE_DIR / 'staticfiles')
+# Directory where collectstatic will copy files (for PythonAnywhere)
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # Default primary key field type

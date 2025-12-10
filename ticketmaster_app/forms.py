@@ -31,10 +31,18 @@ class SearchForm(forms.Form):
         self.helper = FormHelper()
         self.helper.form_method = 'post'
         self.helper.form_tag = False  # Don't let crispy render the form tag
+        self.helper.form_show_labels = True
+        self.helper.form_show_errors = True
+        # Hide the asterisks for required fields
+        self.helper.label_class = ''
+        self.helper.field_class = ''
         self.helper.layout = Layout(
             Field('classification', css_class='mb-3'),
             Field('city', css_class='mb-3')
         )
+        # Remove the asterisk from labels
+        for field_name in self.fields:
+            self.fields[field_name].label_suffix = ''
 
 
 class EditEventNotesForm(forms.ModelForm):
