@@ -5,17 +5,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}Ticketmaster{% endblock %}</title>
+
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="{% static 'ticketmaster_app/styles.css' %}">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'ticketmaster_app/css/styles.css' %}">
   {% block extra_css %}{% endblock %}
 </head>
 <body>
+  <!-- Navigation Bar -->
   <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url 'index' %}">
         <i class="bi bi-ticket-perforated-fill"></i> Ticketmaster
       </a>
+
       <div class="d-flex align-items-center">
         <button id="darkModeToggle" class="btn btn-sm btn-outline-light me-2">
           <i class="bi bi-moon-fill"></i> Dark Mode
@@ -30,9 +36,17 @@
               <i class="bi bi-person-circle"></i> {{ user.username }}
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="{% url 'saved_events' %}"><i class="bi bi-bookmark"></i> My Saved Events</a></li>
+              <li>
+                <a class="dropdown-item" href="{% url 'saved_events' %}">
+                  <i class="bi bi-bookmark"></i> My Saved Events
+                </a>
+              </li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+              <li>
+                <a class="dropdown-item" href="{% url 'logout' %}">
+                  <i class="bi bi-box-arrow-right"></i> Logout
+                </a>
+              </li>
             </ul>
           </div>
         {% else %}
@@ -47,6 +61,7 @@
     </div>
   </nav>
 
+  <!-- Flash Messages -->
   {% if messages %}
     <div class="container mt-3">
       {% for message in messages %}
@@ -58,11 +73,12 @@
     </div>
   {% endif %}
 
-  <div class="main-content">
-    {% block content %}
-    {% endblock %}
-  </div>
+  <!-- Main Content -->
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
 
+  <!-- Footer -->
   <footer class="gradient-footer">
     <div class="container">
       <a href="{% url 'index' %}" class="footer-link">
@@ -71,8 +87,9 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="{% static 'ticketmaster_app/scripts.js' %}"></script>
+  <script src="{% static 'ticketmaster_app/js/scripts.js' %}"></script>
   {% block extra_js %}{% endblock %}
 </body>
 </html>
