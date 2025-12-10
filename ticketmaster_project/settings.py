@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ticketmaster_app.apps.TicketmasterAppConfig',
-    'accounts.apps.AccountsConfig',  # ADD THIS LINE for authentication
+    'accounts.apps.AccountsConfig',  # Authentication
     'crispy_forms',
     'crispy_bootstrap5',
 ]
@@ -60,7 +60,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             BASE_DIR / 'ticketmaster_app/templates',
-            BASE_DIR / 'templates',  # ADD THIS for accounts templates
+            BASE_DIR / 'templates',  # For accounts templates
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -123,11 +123,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Directory where collectstatic will copy files
 STATIC_ROOT = str(BASE_DIR / 'staticfiles')
-
-STATICFILES_DIRS = [
-    str(BASE_DIR / 'ticketmaster_app/static'),
-]
 
 
 # Default primary key field type
@@ -139,7 +136,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# Authentication settings (optional but helpful)
+# Authentication settings
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'index'
