@@ -49,6 +49,8 @@ def format_date(date_str):
         return date_str
 
 
+# --- CHANGE MADE HERE: Added @login_required ---
+@login_required(login_url='login')
 def index(request):
     form = SearchForm()
     return render(request, 'ticketmaster_app/index.html', {'form': form})
