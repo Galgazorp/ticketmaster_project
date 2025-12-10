@@ -17,12 +17,12 @@ class SearchForm(forms.Form):
             ('Dance', 'Dance'),
         ],
         label='Genre',
-        required=True
+        required=False  # Changed to False to remove asterisk
     )
     city = forms.CharField(
         max_length=100,
         label='City',
-        required=True,
+        required=False,  # Changed to False to remove asterisk
         widget=forms.TextInput(attrs={'placeholder': 'Hartford'})
     )
 
@@ -30,19 +30,24 @@ class SearchForm(forms.Form):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_method = 'post'
-        self.helper.form_tag = False  # Don't let crispy render the form tag
-        self.helper.form_show_labels = True
-        self.helper.form_show_errors = True
-        # Hide the asterisks for required fields
-        self.helper.label_class = ''
-        self.helper.field_class = ''
+        self.helper.form_tag = False
         self.helper.layout = Layout(
             Field('classification', css_class='mb-3'),
             Field('city', css_class='mb-3')
         )
-        # Remove the asterisk from labels
-        for field_name in self.fields:
-            self.fields[field_name].label_suffix = ''
+
+    def clean(self):
+        """Custom validation to still require both fields"""
+        cleaned_data = super().clean()
+        classification = cleaned_data.get('classification')
+        city = cleaned_data.get('city')
+
+        if not classification:
+            self.add_error('classification', 'Please select a genre.')
+        if not city:
+            self.add_error('city', 'Please enter a city.')
+
+        return cleaned_data
 
 
 class EditEventNotesForm(forms.ModelForm):
